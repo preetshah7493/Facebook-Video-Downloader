@@ -24,6 +24,7 @@ try {
 
     $msg['id'] = generateId($url);
     $msg['title'] = getTitle($data);
+    $msg['thumbnail'] = getThumbnail($data);
 
     if ($sdLink = getSDLink($data)) {
         $msg['links']['Download Low Quality'] = $sdLink;
@@ -66,6 +67,17 @@ function getSDLink($curl_content)
     } elseif (preg_match($regexSrc, $curl_content, $match)) {
         return $match[1];
     } else {
+        return false;
+    }
+}
+
+function getThumbnail($curl_content)
+{
+    $thumbnail = '/thumbnailUrl:"([^"]+)"/';
+
+    if (preg_match($thumbnail, $curl_content, $match)) {
+        return $match[1];
+    }  else {
         return false;
     }
 }
