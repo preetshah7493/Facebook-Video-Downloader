@@ -74,13 +74,18 @@ function getSDLink($curl_content)
 function getThumbnail($curl_content)
 {
     $thumbnail = '/thumbnailUrl:"([^"]+)"/';
+    $thumbnail2 = '/contentUrl:"([^"]+)"/';
 
     if (preg_match($thumbnail, $curl_content, $match)) {
         return $match[1];
-    }  else {
+    } else if (preg_match($thumbnail2, $curl_content, $match)) {
+        return $match[1];
+    }
+    else {
         return false;
     }
 }
+
 
 function getHDLink($curl_content)
 {
