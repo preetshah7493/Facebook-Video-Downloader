@@ -18,7 +18,7 @@ try {
         ],
     ];
     $context = stream_context_create($context);
-    $data = file_get_contents($url, false, $context);
+   echo $data = file_get_contents($url, false, $context);
 
     $msg['success'] = true;
 
